@@ -15,17 +15,17 @@ const io = new Server(server);
 
     io.on("connection", (socket)=>{
 
-    socket.on('message',(data)=>{
-        socket.broadcast.emit('new-message', data);
+    // socket.on('message',(data)=>{
+    //     socket.broadcast.emit('new-message', data);
+    // })
+
+    socket.on('message',({room,msg})=>{
+        socket.to(room).emit('new-message', msg);
     })
 
-    // socket.on('message',({room,msg})=>{
-    //     socket.to(room).emit('new-message', msg);
-    // })
-
-    // socket.on('join-room',(room)=>{
-    //     socket.join(room);
-    // })
+    socket.on('join-room',(room)=>{
+        socket.join(room);
+    })
 
 
     
