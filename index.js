@@ -13,10 +13,10 @@ const io = new Server(server);
     });
 
 
-io.on("connection", (socket)=>{
+    io.on("connection", (socket)=>{
 
     socket.on('message',(data)=>{
-        io.emit('new-message', data);
+        socket.broadcast.emit('new-message', data);
     })
 
     // socket.on('message',({room,msg})=>{
